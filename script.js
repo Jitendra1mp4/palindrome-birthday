@@ -33,8 +33,8 @@ const getAllDateFormatsStringList = (dateObj) => {
 // method to check if date is palindrome in any formate
 const isDatePalindrome = (dateObj) => {
   const dateInAllFormats = getAllDateFormatsStringList(dateObj);
-  for (i = 0; i < dateInAllFormats.length; i++) {
-    if (isPalindrome(dateInAllFormats[i])) return true;
+  for (date of dateInAllFormats) {
+    if (isPalindrome(date)) return true;
   }
   return false;
 };
