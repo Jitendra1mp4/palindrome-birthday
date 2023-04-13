@@ -121,3 +121,80 @@ const getPreviousPalindromeDate = (dateObj) => {
   }
 };
 
+const getBirthdayObject = (dateString) => {
+  let dateArr = dateString.split("-");
+  return {
+    day: Number(dateArr[2]),
+    month: Number(dateArr[1]),
+    year: Number(dateArr[0]),
+  };
+};
+
+const inputBirthday = document.querySelector("#birthday");
+const btnCheck = document.querySelector("#btn-check-palindrome");
+const divOutput = document.querySelector("#div-output");
+
+const getBirthdayString = (dateObj) => {
+  let day, month, year;
+  //   manage number less then day and month in date.
+  if (dateObj.day < 10) day = "0" + dateObj.day;
+  else day = "" + dateObj.day;
+
+  if (dateObj.month < 10) month = "0" + dateObj.month;
+  else month = "" + dateObj.month;
+
+  year = "" + dateObj.year;
+
+  //  return formatted string
+  return day + "-" + month + "-" + year;
+};
+
+// method that helps us to render message.
+const renderMessage = (message, message2 = "") => {
+  let msg;
+
+  // Setting up message.
+  if (message2 !== "")
+    msg = "Oh! 😮️ you missed it, <br><br>" + message + "<br><br>" + message2;
+  else msg = message + "<br><br>" + message2;
+
+  //adding message
+  divOutput.innerHTML = msg;
+  // adding style classes.
+  divOutput.className = divOutput.className + " border-norm-dark round-hf";
+};
+
+btnCheck.addEventListener("click", () => {
+  const birthdayValue = inputBirthday.value;
+
+  if (birthdayValue !== "") {
+    const dateObj = getBirthdayObject(birthdayValue);
+    if (isDatePalindrome(dateObj)) {
+      renderMessage("Congratulation! birthday is Palindrome. 🎉️");
+    } else {
+      handleNotPalindrome(dateObj);
+    }
+  } else {
+    alert("Please enter the birthday first. 😉️");
+  }
+});
+
+function handleNotPalindrome(dateObj) {
+
+  // Get previous and next palindrome dates
+  let prevPalindrome = getPreviousPalindromeDate(dateObj);
+  let nextPalindrome = getNextPalindromeDate(dateObj);
+
+  // set message for previous palindrome date
+  const msg1 = `<b>Previous</b> palindrome date was <b>${getBirthdayString(
+    prevPalindrome[1]
+  )}</b><br/> which was before <b>${prevPalindrome[0]}</b> days`;
+
+  // set message for next palindrome date
+  const msg2 = `<b>Next</b> palindrome date is <b>${getBirthdayString(
+    nextPalindrome[1]
+  )}</b><br/> which is after <b>${nextPalindrome[0]}</b> days`;
+
+  //function call to show the message(s)
+  renderMessage(msg1, msg2);
+}
