@@ -161,7 +161,7 @@ const renderMessage = (message, message2 = "") => {
   //adding message
   divOutput.innerHTML = msg;
   // adding style classes.
-  divOutput.className = divOutput.className + " border-norm-dark round-hf";
+  divOutput.className = divOutput.className + " border-norm round-hf";
 };
 
 btnCheck.addEventListener("click", () => {
