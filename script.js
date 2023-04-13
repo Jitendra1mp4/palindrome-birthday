@@ -10,7 +10,7 @@ const getAllDateFormatsStringList = (dateObj) => {
     year: "",
   };
 
-//   manage number less then day and month in date.
+  //   manage number less then day and month in date.
   if (dateObj.day < 10) newDataObj.day = "0" + dateObj.day;
   else newDataObj.day = "" + dateObj.day;
 
@@ -83,10 +83,41 @@ const getNextPalindromeDate = (dateObj) => {
   }
 };
 
-dateObj = {
-  day: 23,
-  month: 1,
-  year: 2020,
+const decrementDate = (dateObj) => {
+  let day = dateObj.day - 1;
+  let month = dateObj.month;
+  let year = dateObj.year;
+
+  const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  if (month == 3 && isLeapYear(year) && day < 1) {
+    day = 29;
+    month = 2;
+  }
+
+  if (month == 1) {
+    month = 12;
+    year--;
+  }
+
+  if (day < 1) {
+    month--;
+    day = daysInMonth[month - 1];
+  }
+
+  return {
+    day: day,
+    month: month,
+    year: year,
+  };
+};
+// Function to find previous palindrome date (Bonus)
+const getPreviousPalindromeDate = (dateObj) => {
+  let counter = 0;
+  while (1) {
+    counter++;
+    dateObj = decrementDate(dateObj);
+    if (isDatePalindrome(dateObj)) return [counter, dateObj];
+  }
 };
 
-console.log(getNextPalindromeDate(dateObj));
