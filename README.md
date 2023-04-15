@@ -10,3 +10,5 @@ mm-dd-yyyy,  mm-dd-yy
 yyyy-mm-dd,  yy-mm-dd
 ~~~
 If it’s not a palindrome in one format, I’ll convert it to the above listed format. If it’s a palindrome in at least one of them, then your birthday will be treated as palindrome. I can also tell you the previous and next palindrome date as well as how far those days are.”
+
+The website checks if your birth date reads the same backward and forwards. If it does, congrats, you're a palindrome baby! If not, it tells you when the next palindrome date is. It's like a digital horoscope for palindrome enthusiasts!
