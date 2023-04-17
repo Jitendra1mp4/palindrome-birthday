@@ -167,7 +167,7 @@ function handleNotPalindrome(dateObj) {
   const durationNext = nextPalindrome[0];
 
   // set message for next palindrome date
-  const msg = `<p>😑️ Oops you are not a palindrome baby!</p>`;
+  const msg = `<p>Oops you are not a palindrome baby! 😑️</p>`;
   const msg1 = `<p><strong>Previous</strong> palindrome date was <strong>${prevDate}</strong> which was before <strong>${durationPrev}</strong> days</p>`;
   const msg2 = `<p class='my-hf'><strong>Next</strong> palindrome date is </strong>${nextDate}</strong> which is after <strong>${durationNext}</strong> days,</p>`;
 
